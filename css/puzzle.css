@@ -1,0 +1,81 @@
+#container {
+    width: 80vw;
+    margin: auto;
+    height: 60vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.thumb {
+    background-image: url("../img/out-league.png");
+    background-size: 80vw;
+    width: 20vw;
+    min-width: 20vw;
+    height: 20vw;
+}
+
+#t1 {
+    background-position: top 0vw left 0vw;
+}
+
+#t2 {
+    background-position: top 0vw right 40vw;
+}
+
+#t3 {
+    background-position: top 0vw right 60vw;
+}
+
+#t4 {
+    background-position: top 0vw right 80vw;
+}
+
+#t5 {
+    background-position: bottom 40vw left 0vw;
+}
+
+#t6 {
+    background-position: bottom 40vw right 40vw;
+}
+
+#t7 {
+    background-position: bottom 40vw right 60vw;
+}
+
+#t8 {
+    background-position: bottom 40vw right 80vw;
+}
+
+#t9 {
+    background-position: bottom 60vw left 0vw;
+}
+
+#t10 {
+    background-position: bottom 60vw right 40vw;
+}
+
+#t11 {
+    background-position: bottom 60vw right 60vw;
+}
+
+/*#t1 {*/
+    /*background-position: bottom 60vw right 80vw;*/
+/*}*/
+
+#t12 {
+    background-image: none;
+    background-color: #ffffff;
+    /*background-position: bottom 500px left 0px;*/
+}
+
+/*#t14 {*/
+    /*background-position: bottom 80vw right 0vw;*/
+/*}*/
+
+/*#t15 {*/
+    /*background-position: bottom 80vw right 60vw;*/
+/*}*/
+
+/*#t16 {*/
+    /*background-position: bottom 80vw right 80vw;*/
+/*}*/
