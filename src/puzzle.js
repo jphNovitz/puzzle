@@ -18,32 +18,33 @@ var children = parent.getElementsByClassName('thumb')
 let container = document.getElementById('container');
 container.addEventListener('click', e => {
     let target = e.target;
-    let parentId = target.parentNode.id;
-    if (target !== undefined && target.id.startsWith('t')) {
-        if ((target.nextElementSibling.id === 't12') ) {
-            let temp = target.id
-            target.id = target.nextElementSibling.id
-            target.nextElementSibling.id = temp
-        } else if (element = nNextSibling(target, 4)) {
-            if (element.id === 't12') {
-                let temp = target.id
-                target.id = element.id
-                element.id = temp
-            }
-        } else if (target.previousElementSibling !== null) {
-            if (target.previousElementSibling.id === 't12') {
-                let temp = target.id
-                target.id = target.previousElementSibling.id
-                target.previousElementSibling.id = temp
-            } else if (element = nPreviousSibling(target, 4)) {
-                if (element.id === 't12') {
-                    let temp = target.id
-                    target.id = element.id
-                    element.id = temp
-                }
-            }
-        }
+    let up = nPreviousSibling(target, 4)
+    let left = nPreviousSibling(target, 1)
+    let down = nNextSibling(target, 4)
+    let right = nNextSibling(target, 1)
+
+    if (up !== undefined && up !== null && up.id === 't12') {
+        let temp = target.id
+        target.id = up.id
+        up.id = temp
+    } else if (down !== undefined && down !== null && down.id === 't12') {
+        let temp = target.id
+        target.id = down.id
+        down.id = temp
+} else if (left !== undefined && left !== null && left.id === 't12') {
+        let temp = target.id
+        target.id = left.id
+        left.id = temp
+    } else if (right !== undefined && right !== null && right.id === 't12') {
+        let temp = target.id
+        target.id = right.id
+        right.id = temp
     }
+
+    // let parentId = target.parentNode.id;
+    if (target !== undefined && target.id.startsWith('t')) {
+    }
+
 })
 
 /* event listener on all the thumbnails */
@@ -90,8 +91,8 @@ function mix() {
             }
         }, 200 * i, i)
     }
-    start_timer()
-    document.getElementById('cancel').style.display = 'inline-block';
+    // start_timer()
+    // document.getElementById('cancel').style.display = 'inline-block';
 }
 
 function reset() {
@@ -183,10 +184,13 @@ function nNextSibling(element, level) {
  */
 function nPreviousSibling(element, level) {
     for (let i = 0; i < level; i++) {
-        console.log(element)
+
         if (element == null || element.previousElementSibling === undefined || element.previousElementSibling === null)
             return false;
         element = element.previousElementSibling;
+        // console.log('------->')
+        // console.log(element)
     }
+
     return element;
 }
