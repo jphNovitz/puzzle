@@ -15,7 +15,7 @@ var chrono = "00 : 00";
 var score = 0;
 var parent = document.getElementById('container');
 var children = parent.getElementsByClassName('thumb')
-let container = document.getElementById('container');
+const container = document.getElementById('container');
 container.addEventListener('click', e => {
     let target = e.target;
     let up = nPreviousSibling(target, 4)
@@ -31,7 +31,7 @@ container.addEventListener('click', e => {
         let temp = target.id
         target.id = down.id
         down.id = temp
-} else if (left !== undefined && left !== null && left.id === 't12') {
+    } else if (left !== undefined && left !== null && left.id === 't12') {
         let temp = target.id
         target.id = left.id
         left.id = temp
@@ -79,18 +79,64 @@ container.addEventListener('click', e => {
 
 
 function mix() {
-    orders.sort(() => Math.random() - 0.5);
 
-    for (let i = 0; i < children.length; i++) {
+    for (let i = 0; i< 50; i++) {
         setTimeout(function () {
-            if (children[i].id !== 't12') {
-                children[i].removeAttribute('id')
-                children[i].id = 't' + orders[i]
-            } else {
-                orders.push(orders[i])
-            }
-        }, 200 * i, i)
+        let target = document.getElementById('t12')
+        let up = nPreviousSibling(target, 4)
+        let left = nPreviousSibling(target, 1)
+        let down = nNextSibling(target, 4)
+        let right = nNextSibling(target, 1)
+        let randTarget = Math.floor(Math.random() * 4) + 1;
+        switch (randTarget) {
+            case 1:
+                if (up) {
+                    // console.log(up)
+                    let temp = target.id
+                    target.id = up.id
+                    up.id = temp
+                } else i-- ;
+                break;
+            case 2:
+                // console.log(left)
+                if (left) {
+                    let temp = target.id
+                    target.id = left.id
+                    left.id = temp
+                } else i-- ;
+                break;
+            case 3:
+                // console.log(down)
+                if (down) {
+                let temp = target.id
+                target.id = down.id
+                down.id = temp
+            } else i-- ;
+                break;
+            case 4:
+                // console.log(right)
+                if (right) {
+                    let temp = target.id
+                    target.id = right.id
+                    right.id = temp
+                } else i-- ;
+                break;
+
+        }
+        }, 400 * i, i)
     }
+    // orders.sort(() => Math.random() - 0.5);
+    //
+    // for (let i = 0; i < children.length; i++) {
+    //     setTimeout(function () {
+    //         if (children[i].id !== 't12') {
+    //             children[i].removeAttribute('id')
+    //             children[i].id = 't' + orders[i]
+    //         } else {
+    //             orders.push(orders[i])
+    //         }
+    //     }, 200 * i, i)
+    // }
     // start_timer()
     // document.getElementById('cancel').style.display = 'inline-block';
 }
@@ -167,8 +213,9 @@ function stop() {
  *
  */
 function nNextSibling(element, level) {
+    console.log(element)
     for (let i = 0; i < level; i++) {
-        if (element.nextElementSibling === undefined || element.nextElementSibling === null)
+        if (element === undefined || element.nextElementSibling === undefined || element.nextElementSibling === null)
             return false;
         element = element.nextElementSibling;
     }
@@ -184,13 +231,14 @@ function nNextSibling(element, level) {
  */
 function nPreviousSibling(element, level) {
     for (let i = 0; i < level; i++) {
-
         if (element == null || element.previousElementSibling === undefined || element.previousElementSibling === null)
             return false;
         element = element.previousElementSibling;
-        // console.log('------->')
-        // console.log(element)
     }
 
     return element;
 }
+
+/**
+ * @todo modifier pour eviter de passer d'une ligne  l'autre ex for(i=0;i<elem.parentNode.length;i++) {if (elem.parentNode[i] == elem) //.... etc.. etc...}
+ */
