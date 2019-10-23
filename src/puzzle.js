@@ -22,8 +22,9 @@ container.addEventListener('click', e => {
     let left = nPreviousSibling(target, 1)
     let down = nNextSibling(target, 4)
     let right = nNextSibling(target, 1)
+    let index = childIndex(target)
 
-    if (up !== undefined && up !== null && up.id === 't12') {
+    if (up !== undefined && up !== null && up.id === 't12' ) {
         let temp = target.id
         target.id = up.id
         up.id = temp
@@ -35,7 +36,7 @@ container.addEventListener('click', e => {
         let temp = target.id
         target.id = left.id
         left.id = temp
-    } else if (right !== undefined && right !== null && right.id === 't12') {
+    } else if (right !== undefined && right !== null && right.id === 't12' && index%4 !== 0) {
         let temp = target.id
         target.id = right.id
         right.id = temp
@@ -91,14 +92,12 @@ function mix() {
         switch (randTarget) {
             case 1:
                 if (up) {
-                    // console.log(up)
                     let temp = target.id
                     target.id = up.id
                     up.id = temp
                 } else i-- ;
                 break;
             case 2:
-                // console.log(left)
                 if (left) {
                     let temp = target.id
                     target.id = left.id
@@ -106,7 +105,6 @@ function mix() {
                 } else i-- ;
                 break;
             case 3:
-                // console.log(down)
                 if (down) {
                 let temp = target.id
                 target.id = down.id
@@ -114,7 +112,6 @@ function mix() {
             } else i-- ;
                 break;
             case 4:
-                // console.log(right)
                 if (right) {
                     let temp = target.id
                     target.id = right.id
@@ -213,7 +210,6 @@ function stop() {
  *
  */
 function nNextSibling(element, level) {
-    console.log(element)
     for (let i = 0; i < level; i++) {
         if (element === undefined || element.nextElementSibling === undefined || element.nextElementSibling === null)
             return false;
@@ -240,5 +236,15 @@ function nPreviousSibling(element, level) {
 }
 
 /**
- * @todo modifier pour eviter de passer d'une ligne  l'autre ex for(i=0;i<elem.parentNode.length;i++) {if (elem.parentNode[i] == elem) //.... etc.. etc...}
+ * @description give the index of the element in his parent
+ * @param element
+ * @returns {number}
+ * @author Novitz Jean-Philippe <jphi@jphnovitz.be>
  */
+function childIndex(element){
+   let children = element.parentNode.children ;
+   for (let i = 0 ; i <= children.length; i++){
+       if (children[i] === element) return i+1;
+   }
+   return -1;
+}
