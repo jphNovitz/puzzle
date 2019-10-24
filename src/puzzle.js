@@ -43,8 +43,8 @@ container.addEventListener('click', e => {
     }
 
     // let parentId = target.parentNode.id;
-    if (target !== undefined && target.id.startsWith('t')) {
-    }
+    // if (target !== undefined && target.id.startsWith('t')) {
+    // }
 
 })
 
@@ -80,7 +80,6 @@ container.addEventListener('click', e => {
 
 
 function mix() {
-
     for (let i = 0; i< 50; i++) {
         setTimeout(function () {
         let target = document.getElementById('t12')
@@ -112,7 +111,7 @@ function mix() {
             } else i-- ;
                 break;
             case 4:
-                if (right) {
+                if (right && childIndex(target)%4 !== 0) { // childIndex avoid swapping righter uo and lefter under it
                     let temp = target.id
                     target.id = right.id
                     right.id = temp
@@ -120,8 +119,9 @@ function mix() {
                 break;
 
         }
-        }, 400 * i, i)
+        }, 200 * i, i)
     }
+    start_timer()
     // orders.sort(() => Math.random() - 0.5);
     //
     // for (let i = 0; i < children.length; i++) {
@@ -150,23 +150,23 @@ function reset() {
     document.getElementById('indice').innerText = '';
 }
 
-// function start_timer() {
-//     s = m = 0;
-//     runChrono = setInterval(function () {
-//         var formatS = ("0" + s).slice(-2);
-//         timer.innerText = m + ' : ' + formatS
-//         var formatM = ("0" + m).slice(-2);
-//         timer.innerText = formatM + ' : ' + formatS
-//         chrono = formatM + ' : ' + formatS ;
-//         s++;
-//         if (s === 60) {
-//             s = 0
-//             m++
-//             score = checkScore() ;
-//             document.getElementById('indice').innerText = 'Indice: ' + score + ' pièces sont bien placées';
-//         }
-//     }, 1000)
-// }
+function start_timer() {
+    s = m = 0;
+    runChrono = setInterval(function () {
+        var formatS = ("0" + s).slice(-2);
+        timer.innerText = m + ' : ' + formatS
+        var formatM = ("0" + m).slice(-2);
+        timer.innerText = formatM + ' : ' + formatS
+        chrono = formatM + ' : ' + formatS ;
+        s++;
+        if (s === 60) {
+            s = 0
+            m++
+            score = checkScore() ;
+            document.getElementById('indice').innerText = 'Indice: ' + score + ' pièces sont bien placées';
+        }
+    }, 1000)
+}
 
 function stop_timer() {
     clearInterval(runChrono)
