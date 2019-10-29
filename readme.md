@@ -1,20 +1,81 @@
-L'objectif était de créer un puzzle enfantin composé de carrés. Un carré est vide et l'image est reconsittuée en faisant glisser les différentes pièces.  
+Je me suis lancé un petit défi: créer un puzzle coulissant, une série de carrés forment une image.  Une fois le puzzle mélangé 
+le but du jeu est de recrééer l'image en faisant  glisser les carrés un par un.  
   
-Plusieurs choses étaient à réaliser lors de ce défi: 
+Voici les différente choses que j'ai mise en place pour atteindre mon objectif.  
 
-1 Créer le puzzle.
------------------
-Le puzzle sera composé de 12 carrés, 4 rangées et quatre colonnes.
-Au départ les carrés forment une image. Mélangez et il y a puzzle.  
+
+
+1 Phase d'abstraction
+----------------------
+
+Pour les différentes étapes ci-dessous, l'élément central est l'abstraction c'est à dire avoir le modèle de ce que je veux faire et 
+de ce que je vais mettre en place pour ma réalisation.  Quels sont les diffétents éléments à créer et comment je vais les faire mettre 
+en action et les faire intéragir entre eux.  
+
+C'est important car la première phase d'un projet doit être l'analyse.  
+Bien fixer les idées sur ce que l'on a besoin, mettre en place le contexte c'est avoir une bonne base.  Le langage utilisé importe moins. 
+Si je l'ai bien pensé, je pourrait l'adapter à n'importe quel langaage ou framework.
+
+
+  Ce que je veux
+  --------------
+
+* une image composée de carrés ;
+* un bouton qui: 
+  * mélange les carrés pour déformer l'image ;
+  * lance un chronomètre.
+* un bouton pour arrêter le jeux et tout remettre à zéro ;
+* une information sur le l'avancement de la résolution du puzzle ;
+* Un affichage final sur la réussite ou l'échec du jeu.
+
+
+  Une image composée de carrés.
+  ----------------------------
+  Deux méthodes sont possibles :
+  * Prendre une image de base et la découper pour avroir les miniatures.  Assembler celles-ci comme autant de cases.
+  * créer les différentes case et n'afficher pour chacune qu'une partie d'une même image de fond d'écran.
+
+  Mélanger le puzzle.
+  --------------------
+L'idée qui viens directement en tête est simple.  J'ai une série de cases, je dois le mélanger.  
+Simple: c'est un tableau je n'ai qu'à le mélanger et (ré)afficher les cases dans le désordre.  
+
+Cela fonctionne bien les éléments sont mélangés... fausse piste.  
   
- Comment ?  
+Le principe d'un puzzle est de pouvoir le résoudre.  
+Mélanger signigie que les pieces doivent être déplacées pour se mélanger progressivement.  Si le jeu est monté
+avec les pièces dans le désordre rien ne dis qu'il est possible de de reconstituer.
+  
+Une meilleure solution serait de se baser sur le 'trou', la case vide.  
+Faire coulisser les cases une par une (un certain nombre de fois) pour mélanger le jeu progressivement.  
    
- Une méthode possible aurait consisté  a créer 12 'images partielles' en recoupant l'image
- de base avec un logiciel de traitement d'image.  L'intétêt est limité et le principe pas très intéressant.  
+  
+Je définis une variable pour haut - bas - droite - gauche.  
+Je vérifie si la case existe (si je ne déborde pas du cadre) et je fais glisser.  
+Le blanc de balade et mélange l'image.  C'est ça qu'il me faut !  
+  
+  Des boutons
+  -----------
+    
+Rien de plus simple qu'un bouton.  Deux choses sont possibles en fonction du contexte:
+* le clique sur le bouton appelle une fonction, déclenche quelque chose.
+* écouter un évènement 'clique' sur ce bouton.  
+  
+     
+3 Faire bouger les pièces.
+-------------------------
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
    
- La méthode choisie est celle-ci:
- 
- J'ai prix une image de base, je l'ai recadrée pour qu'elle corresponde à ce dont j'avais besoins.
+ J'ai une image de base, je l'ai recadrée pour qu'elle corresponde à ce dont j'avais besoins.
  
  J'ai créé une série de douze divs 'thumbs' comprises dans un container. Il faut quatre div pour chaque ligne, il suffit de leur donner une largeur 
  adéquat.  
@@ -41,11 +102,7 @@ Au départ les carrés forment une image. Mélangez et il y a puzzle.
 
 ```
 
-2 Mélanger le puzzle.
---------------------
-L'idée qui viens directement en tête est simple.  J'ai une série de cases, je dois le mélanger. Simple: c'est un tableau je n'ai cas le mélanger
-et afficher les cases dans le désordre.  Pour les mélanger, un par un, je supprime leur id et recrée un id avec la valeur mélangée.
-(*) children a été défini plus haut, children.length correspond au nombres de cases (nombre d'enfants du parent 'container')
+
 
 ```javascript
 var orders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
@@ -64,15 +121,9 @@ for (let i = 0; i < children.length; i++) {
     }
 ```
   
-Cela fonctionne bien les éléments sont mélangés... fausse piste.  
-Le principe d'un puzzle est de pouvoir le résoudre.  
-Mélanger signigie que les pieces doivent être déplacées pour se mélanger prograssivement.  Si le jeu est monté
-avec les pièces dans le désordre rien ne dis qu'il est possible de de reconstituer.
   
- Une meilleure solution est de se baser sur le trou, la case blanche.  
- Faire bouger les cases une par une (un certain nombre de fois) mélange le jeu progressivement.  
-   
- ```javascript
+  
+```javascript
 for (let i = 0; i < 100; i++) {
         setTimeout(function () {
             let target = document.getElementById('t12')
@@ -116,14 +167,3 @@ for (let i = 0; i < 100; i++) {
         }, 60 * i, i)
     }
 ```  
-  
-Je définis une variable pour haut - bas - droite - gauche.  
-Je vérifie si la case existe (si je ne déborde pas du cadre) et je fais glisser.  
-Le blanc de balade et mélange l'image.  C'est ça qu'il me faut !  
-  
-   
-3 Faire bouger les pièces.
--------------------------
-
-  
-  
