@@ -1,4 +1,5 @@
 function shuffle() {
+    setInterval(showAlert, 60001)
     for (let i = 0; i < 100; i++) {
         setTimeout(function () {
             let target = document.getElementById('t12')

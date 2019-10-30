@@ -51,3 +51,13 @@ function childIndex(element){
     }
     return -1;
 }
+
+function showAlert() {
+    document.getElementById('indice').style.top = '0px ';
+    setTimeout(function () {
+        document.getElementById('indice').style.top = '-55px ';
+    }, 8000)
+}
+/**
+ * @todo stop interval
+ */

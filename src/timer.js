@@ -18,7 +18,7 @@ function start_timer() {
             s = 0
             m++
             score = checkScore() ;
-            // document.getElementById('indice').innerText = 'Indice: ' + score + ' pièces sont bien placées';
+            document.getElementById('indice').innerText = 'Indice: ' + score + ' pièces sont bien placées';
         }
     }, 1000)
     document.getElementById('btn-stop').classList.remove('disabled');
