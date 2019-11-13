@@ -1,3 +1,6 @@
+PUZZLE 
+======
+
 Je me suis lancé un petit défi: créer un puzzle coulissant, une série de carrés forment une image.  Une fois le puzzle mélangé 
 le but du jeu est de recrééer l'image en faisant  glisser les carrés un par un.  
   
@@ -17,8 +20,7 @@ Bien fixer les idées sur ce que l'on a besoin, mettre en place le contexte c'es
 Si je l'ai bien pensé, je pourrait l'adapter à n'importe quel langaage ou framework.
 
 
-  Ce que je veux
-  --------------
+### Ce que je veux
 
 * une image composée de carrés ;
 * un bouton qui: 
@@ -29,14 +31,12 @@ Si je l'ai bien pensé, je pourrait l'adapter à n'importe quel langaage ou fram
 * Un affichage final sur la réussite ou l'échec du jeu.
 
 
-  Une image composée de carrés.
-  ----------------------------
+### Une image composée de carrés.
   Deux méthodes sont possibles :
   * Prendre une image de base et la découper pour avroir les miniatures.  Assembler celles-ci comme autant de cases.
   * créer les différentes case et n'afficher pour chacune qu'une partie d'une même image de fond d'écran.
 
-  Mélanger le puzzle.
-  --------------------
+### Mélanger le puzzle.
 L'idée qui viens directement en tête est simple.  J'ai une série de cases, je dois le mélanger.  
 Simple: c'est un tableau je n'ai qu'à le mélanger et (ré)afficher les cases dans le désordre.  
 
@@ -54,38 +54,41 @@ Je définis une variable pour haut - bas - droite - gauche.
 Je vérifie si la case existe (si je ne déborde pas du cadre) et je fais glisser.  
 Le blanc de balade et mélange l'image.  C'est ça qu'il me faut !  
   
-  Des boutons
-  -----------
+### Des boutons
     
 Rien de plus simple qu'un bouton.  Deux choses sont possibles en fonction du contexte:
 * le clique sur le bouton appelle une fonction, déclenche quelque chose.
 * écouter un évènement 'clique' sur ce bouton.  
   
      
-3 Faire bouger les pièces.
--------------------------
+### Faire bouger les pièces.
+
+Pour bouger les pièces, le principe est simple, il faut trouver une façon de modifier l'ordre d'affichage des cases.
+  
+### Des informations.
+
+Basiquement j'ai besoin de trois information, trois affichages.
+
+* Un timer qui se déclenche au lancement du jeu et qui a un affichage sur l'écran.
+une idée serait d'utiliser des boucles pour les secondes et les minutes.  Lorsque l'indice dépasse soixante, il est remit à zero car une minute ne compte 'que' 60 sec.
+* Pour afficher un indice sur la progression / le nombre de pièces bien placé.
+J'imagine une fonction qui parcourerait les différentes pieces et qui incrémenterais une variable si la pièce est bien à sa place.
+un interval déclencherai l'affichage de cette variable un peu mise ne forme.
+* A la fin, soit qu'on ait résolu le puzzle, soit qu'on l'ait stoppé, un écran affiche le score avec un verdict 'gagné' ou 'perdu'.
 
   
   
-  
-  
-  
-  
-  
-  
-  
-   
- J'ai une image de base, je l'ai recadrée pour qu'elle corresponde à ce dont j'avais besoins.
+2 Javascript
+-------------
+ Pour créer mon puzzle et mes carrés j'ai une image de base, elle est recadrée pour correspondre à ce dont j'ai besoin.
  
- J'ai créé une série de douze divs 'thumbs' comprises dans un container. Il faut quatre div pour chaque ligne, il suffit de leur donner une largeur 
- adéquat.  
+ J'ai créé une série de douze divs 'thumbs' comprises dans un container. Il faut quatre div pour chaque ligne, des dimenensions qui vont bien et mon squelette de puzzle est prêt.  
    
  Mes carrés sont blancs il leur faut un fond et je n'ai qu'une grande image.  
  J'utilise les propriétés [background-image](https://developer.mozilla.org/fr/docs/Web/CSS/background-image) pour placer l'image de fond et [background-position](https://developer.mozilla.org/fr/docs/Web/CSS/background-position) pour afficher une zone differente d'un div à l'autre.
    
- L'image de fond sera toujours la même, c'est une bonne pratique de mettre cette propriété  dans une seule classe et de la réutiliser.  La *position* devra, elle,
-  être différente pour chaque div.  J'ai donc utilisé deux classes 'thumb' qui se charge d'afficher le *background* et de fixer les dimensions de la div.  
- Les classes de t1 à t2 sont chargées de préciser la position.
+ Chaque élément possède la classe 'thumb' qui se charge d'afficher le background et de fixer sa taille.  
+ Une classe allant de t1 à t12 est nécéssaire pour renseigner la  *position* car celle-ci doit être différente pour chaque item.
  
   ```css
 .thumb {

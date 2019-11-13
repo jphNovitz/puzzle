@@ -52,6 +52,7 @@ container.addEventListener('click', e => {
 function reset() {
     document.getElementById('result').style.opacity = 0;
     document.getElementById('result').style.zIndex = -1;
+
     for (let i = 0; i < children.length; i++) {
         children[i].removeAttribute('id')
         let j = i + 1
