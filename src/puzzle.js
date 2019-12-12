@@ -1,8 +1,8 @@
 /**
  * Puzzle.js
  * mix thumbnail to shuffle the big picture
- * then lauch a timer
- * I's a game
+ * then launch a timer
+ * It's a game
  *
  * @author Novitz Jean-Philippe <hello@jphnovitz.be>
  * @created october 2019
@@ -17,7 +17,8 @@ var parent = document.getElementById('container');
 var children = parent.getElementsByClassName('thumb')
 const container = document.getElementById('container');
 
-container.addEventListener('click', e => {
+container.addEventListener('click', function (e) {
+
     let target = e.target;
     let up = nPreviousSibling(target, 4)
     let left = nPreviousSibling(target, 1)
@@ -89,6 +90,7 @@ function stop() {
 
     divResult.style.zIndex = 2;
     divResult.style.opacity = 1;
+    divResult.style.visibility = 'visible';
 
     document.getElementById('btn-stop').classList.add('disabled');
     return true;
