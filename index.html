@@ -6,8 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Jphi 's Puzzle</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/puzzle.css">
 
 </head>
@@ -17,65 +16,54 @@
     <h2></h2>
     <button type="button" class="btn btn-danger" onclick="reset()">Fermer</button>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Jphi's Puzzle !</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <span id="timer" class="nav-link text-primary">00 : 00</span>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Accueil</a>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="nav-link btn btn-primary text-white" onclick="shuffle()">
-                    Jouer
-                </button>
-            </li>
-            <li class="nav-item">
-                <button id="btn-stop" type="button" class="nav-link btn btn-danger disabled text-white" onclick="stop()">
-                    Arrêter
-                </button>
-            </li>
-        </ul>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
+    <a class="navbar-brand" href="https://jphnovitz.be">Jphi's Puzzle !</a>
+    <ul class="navbar-nav list-group list-group-horizontal">
+        <li class="list-group-item">
+            <span id="timer" class="nav-link text-primary">00 : 00</span>
+        </li>
+        <li class="list-group-item">
+            <a class="nav-link" href="https://exempl.es">Accueil</a>
+        </li>
+        <li class="list-group-item">
+            <button type="button" class="nav-link btn btn-primary text-white py-1 px-2" onclick="shuffle()">
+                Jouer
+            </button>
+        </li>
+        <li class="list-group-item">
+            <button id="btn-stop" type="button" class="nav-link btn btn-danger disabled text-white  py-1 px-2"
+                    onclick="stop()">
+                Arrêter
+            </button>
+        </li>
+    </ul>
 </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div id='indice' class="alert alert-secondary" role="alert"></div>
-            </div>
-        </div>
-        <div class="row">
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div id='indice' class="alert alert-secondary" role="alert"></div>
         </div>
     </div>
+    <div class="row">
+
+    </div>
+</div>
 
 <div id="container">
-        <div class="thumb" id="t1"></div>
-        <div class="thumb" id="t2"></div>
-        <div class="thumb" id="t3"></div>
-        <div class="thumb" id="t4"></div>
-        <div class="thumb" id="t5"></div>
-        <div class="thumb" id="t6"></div>
-        <div class="thumb" id="t7"></div>
-        <div class="thumb" id="t8"></div>
-        <div class="thumb" id="t9"></div>
-        <div class="thumb" id="t10"></div>
-        <div class="thumb" id="t11"></div>
-        <div class="thumb blank" id="t12"></div>
-    </div>
+    <div class="thumb" id="t1"></div>
+    <div class="thumb" id="t2"></div>
+    <div class="thumb" id="t3"></div>
+    <div class="thumb" id="t4"></div>
+    <div class="thumb" id="t5"></div>
+    <div class="thumb" id="t6"></div>
+    <div class="thumb" id="t7"></div>
+    <div class="thumb" id="t8"></div>
+    <div class="thumb" id="t9"></div>
+    <div class="thumb" id="t10"></div>
+    <div class="thumb" id="t11"></div>
+    <div class="thumb blank" id="t12"></div>
+</div>
 
-
-<!--<script>-->
-    <!--document.getElementById("try").addEventListener("click", function(){-->
-        <!--alert()-->
-    <!--});-->
-<!--</script>-->
 </body>
 <script src="src/functions.js"></script>
 <script src="src/shuffle.js"></script>
